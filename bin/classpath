@@ -1,0 +1,30 @@
+#! /bin/sh
+
+bin=`dirname $0`
+app=$bin/../
+
+echo "#!/bin/sh" > cheater.sh
+echo "" >> cheater.sh
+echo "cygwin=\`uname | grep -i cygwin\`" >> cheater.sh
+echo "separator=\";\"" >> cheater.sh
+echo "" >> cheater.sh
+echo "if [ -z \"\$cygwin\" ]; then" >> cheater.sh
+echo "  separator=\":\"" >> cheater.sh
+echo "fi" >> cheater.sh
+echo "" >> cheater.sh
+echo "bin=\`dirname \$0\`" >> cheater.sh
+echo "app=\$bin/../" >> cheater.sh
+echo "" >> cheater.sh
+echo "classpath=\$CLASSPATH" >> cheater.sh
+for f in `ls $app/lib/*.jar`; do
+  f=`basename $f`
+  echo "classpath=\"\$classpath\$separator\$app/lib/"$f"\"" >> cheater.sh;
+done
+echo "classpath=\"\$classpath\$separator\$app/etc\"" >> cheater.sh
+f=`ls $bin/cheater-*.jar`
+f=`basename $f`
+echo "classpath=\"\$classpath\$separator\$app/bin/"$f"\"" >> cheater.sh
+echo "" >> cheater.sh
+echo "CLASSPATH=\"\$classpath\" java -Djavax.net.ssl.trustStore=\$app/etc/jssecacerts com.honnix.cheater.cli.Main" >> cheater.sh
+echo "" >> cheater.sh
+chmod +x cheater.sh

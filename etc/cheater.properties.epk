@@ -1,0 +1,26 @@
+cert.file.name=jssecacerts.epk
+user.name=[EID]
+password=[WIN_PWD]
+timezone.offset=480
+realm=Zoning
+login.url=https://example.com
+logout.url=https://example.com
+heartbeat.url=https://example.com
+after.login.url=https://example.com
+user.agent=Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; InfoPath.1)
+# time to live before logging out, in hour
+hours.to.live=8
+# heatbeat interval, in second
+heartbeat.interval=30
+# heatbeat max fail times
+heartbeat.max.fail.times=10
+# login retry interval, in second
+login.retry.interval=30
+# maximum login retry times
+login.max.retry.times=2
+# underlying client
+client=com.honnix.cheater.network.CheaterHttpClient
+# single process checker
+spc=com.honnix.cheater.spc.SocketSpc
+# port number for socket spc
+socket.spc.port=44080
